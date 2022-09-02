@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">task5</string>
+    <string name="WelcomeLabel">WELCOME TO RECYCLEVIEW</string>
+    <string name="fruits">FRUITS</string>
+</resources>
