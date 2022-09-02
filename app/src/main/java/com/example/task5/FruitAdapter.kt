@@ -1,5 +1,6 @@
 package com.example.task5
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class FruitAdapter(private val fruitsList: List<FruitsDetailsActivity>): RecyclerView.Adapter<FruitAdapter.FruitViewHolder>() {
+
+    var onItemClick: ((FruitsDetailsActivity) -> Unit )?=null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FruitViewHolder {
         val itemFruitsView=
             LayoutInflater.from(parent.context).inflate(R.layout.fruit_item, parent, false)
@@ -18,6 +22,7 @@ class FruitAdapter(private val fruitsList: List<FruitsDetailsActivity>): Recycle
     override fun onBindViewHolder(holder: FruitViewHolder, position: Int) {
         val currentFruits= fruitsList[position]
         holder.bindFruits(currentFruits)
+        holder.itemView.setOnClickListener { onItemClick?.invoke(FruitsDetailsActivity()) }
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +38,10 @@ class FruitAdapter(private val fruitsList: List<FruitsDetailsActivity>): Recycle
             fruitImage= itemView.findViewById(R.id.mangoImage)
             fruitImage.setOnClickListener {
                 val currentFruits=fruitsList[layoutPosition]
-                Toast.makeText(itemView.context, currentFruits.fruitName, Toast.LENGTH_SHORT).show()
+//                val intent= Intent(itemView.context, MoreFruitDetails::class.java)
+//                intent.putExtra("FRUIT", currentFruits)
+//                itemView.context.startActivity(intent)
+//                Toast.makeText(itemView.context, currentFruits.fruitName, Toast.LENGTH_SHORT).show()
             }
         }
         fun bindFruits(fruit: FruitsDetailsActivity){

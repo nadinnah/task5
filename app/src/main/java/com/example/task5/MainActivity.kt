@@ -1,7 +1,9 @@
 package com.example.task5
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -11,10 +13,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recyclerView= findViewById(R.id.recycleView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager= LinearLayoutManager(this)
 
         val listOfFruits= getListOfFruits()
         val fruitAdapter= FruitAdapter(listOfFruits)
         recyclerView.adapter= fruitAdapter
+
+        fruitAdapter.onItemClick={
+            val intent = Intent(this, MoreFruitDetails::class.java)
+            intent.putExtra("FRUITS", it)
+            startActivity(intent)
+        }
     }
     private fun getListOfFruits(): List<FruitsDetailsActivity>{
         val fruits= mutableListOf<FruitsDetailsActivity>()
