@@ -22,7 +22,7 @@ class FruitAdapter(private val fruitsList: List<FruitsDetailsActivity>): Recycle
     override fun onBindViewHolder(holder: FruitViewHolder, position: Int) {
         val currentFruits= fruitsList[position]
         holder.bindFruits(currentFruits)
-        holder.itemView.setOnClickListener { onItemClick?.invoke(FruitsDetailsActivity()) }
+       // holder.itemView.setOnClickListener { onItemClick?.invoke(MainActivity()) }
     }
 
     override fun getItemCount(): Int {
@@ -38,9 +38,9 @@ class FruitAdapter(private val fruitsList: List<FruitsDetailsActivity>): Recycle
             fruitImage= itemView.findViewById(R.id.mangoImage)
             fruitImage.setOnClickListener {
                 val currentFruits=fruitsList[layoutPosition]
-//                val intent= Intent(itemView.context, MoreFruitDetails::class.java)
-//                intent.putExtra("FRUIT", currentFruits)
-//                itemView.context.startActivity(intent)
+                val intent= Intent(itemView.context, MoreFruitDetails::class.java)
+                intent.putExtra("FRUIT", currentFruits)
+                itemView.context.startActivity(intent)
 //                Toast.makeText(itemView.context, currentFruits.fruitName, Toast.LENGTH_SHORT).show()
             }
         }
